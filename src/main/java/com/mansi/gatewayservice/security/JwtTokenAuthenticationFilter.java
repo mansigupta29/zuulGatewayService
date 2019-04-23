@@ -50,7 +50,8 @@ public class JwtTokenAuthenticationFilter extends  OncePerRequestFilter {
                     .getBody();
 
             String username = claims.getSubject();
-            if(username != null) {
+            String uri = request.getRequestURI();
+            if(username != null && uri.contains(username)) {
                 @SuppressWarnings("unchecked")
                 List<String> authorities = (List<String>) claims.get("authorities");
 
